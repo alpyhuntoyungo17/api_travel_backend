@@ -49,10 +49,10 @@ router.post("/post", upload.single("gambar"), async (req, res) => {
       let cloudinaryData = null;
 
     if (gambar) {
-      cloudinaryData = await cloudinary.uploader.upload(gambar, {
+      cloudinaryData = await claudinary.uploader.upload(gambar, {
         resource_type: "auto",
       });
-      // console.log(cloudinaryData);
+      console.log(cloudinaryData);
 
       fs.unlinkSync(gambar);
     }
