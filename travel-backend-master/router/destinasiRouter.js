@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     const name = path.basename(file.originalname, ext).replace(/\s+/g, "_"); // hilangkan spasi
-    const uniqueName = ${Date.now()}_${name}${ext};
+    const uniqueName = `${Date.now()}_${name}${ext}`;
     cb(null, uniqueName);
   },
 });
