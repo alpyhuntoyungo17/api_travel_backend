@@ -20,7 +20,7 @@ const upload = multer({ storage: storage });
 
 router.get("/data", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM informasi_tempat");
+    const result = await db.query("SELECT * FROM informasi_tampat");
     console.log(result);
     res.json(result.rows);
   } catch (error) {
@@ -35,7 +35,7 @@ router.post("/post", upload.single("gambar"), async (req, res) => {
 
   try {
     const result = await db.query(
-      `INSERT INTO informasi_tempat (nama, tempat, lokasi, gambar, deskripsi)
+      `INSERT INTO informasi_tampat (id, nama, tempat, lokasi, gambar, deskripsi)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
       [nama, tempat, lokasi, gambar, deskripsi]
