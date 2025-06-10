@@ -4,7 +4,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const claudinary = require('cloudinary')
+const claudinary = require('cloudinary').v2;
+const fs = require("fs");
 
 claudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -56,13 +57,13 @@ router.post("/post", upload.single("gambar"), async (req, res) => {
 
       fs.unlinkSync(gambar);
     }
-    let fileUrl = cloudinaryData?.secure_url || null;
+    let gambarData = cloudinaryData?.secure_url || null;
 
 
 
     const result = await db.query(
       `INSERT INTO informasi_tampat (nama, tempat, lokasi, gambar, deskripsi) VALUES ($1, $2, $3, $4, $5)`,
-      [nama, tempat, lokasi, fileUrl, deskripsi]
+      [nama, tempat, lokasi, gambarData, deskripsi]
     );
 
     res.status(201).json({
