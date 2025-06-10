@@ -61,8 +61,7 @@ router.post("/post", upload.single("gambar"), async (req, res) => {
 
 
     const result = await db.query(
-      `INSERT INTO informasi_tampat (nama, tempat, lokasi, gambar, deskripsi)
-       VALUES ($1, $2, $3, $4)`,
+      `INSERT INTO informasi_tampat (nama, tempat, lokasi, gambar, deskripsi) VALUES ($1, $2, $3, $4, $5)`,
       [nama, tempat, lokasi, fileUrl, deskripsi]
     );
 
