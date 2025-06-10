@@ -15,17 +15,15 @@ claudinary.config({
 
 
 
-
-
-
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // simpan di folder uploads/
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
   },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+  filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + "-" + uniqueSuffix + ext);
+    const name = path.basename(file.originalname, ext).replace(/\s+/g, "_"); // hilangkan spasi
+    const uniqueName = ${Date.now()}_${name}${ext};
+    cb(null, uniqueName);
   },
 });
 
