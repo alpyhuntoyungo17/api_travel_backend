@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const destinasiRouter = require("./router/destinasiRouter");
-// const usersRouter = require("./routes/users");
+const usersRouter = require("./router/userRouter");
 const path = require("path");
 // const db = require("./database/db");
 
@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api", destinasiRouter);
+app.use("/user", destinasiRouter);
 // app.use("/api", usersRouter);
 
 const PORT = 4000;
