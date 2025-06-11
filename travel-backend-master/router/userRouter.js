@@ -4,7 +4,7 @@ const router = express.Router();
 const db = require("../database/db");
 
 // Ambil semua data user
-router.get("/", async (req, res) => {
+router.get("/get", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM users");
     res.json(result.rows);
