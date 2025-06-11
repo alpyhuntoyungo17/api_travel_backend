@@ -15,7 +15,7 @@ router.get("/get", async (req, res) => {
 });
 
 // Tambahkan user baru
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
