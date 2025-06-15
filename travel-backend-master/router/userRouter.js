@@ -53,7 +53,7 @@ router.post("/add", async (req, res) => {
 });
 
 // Update user
-router.put("/:id", async (req, res) => {
+router.put("/put/:id", async (req, res) => {
   const { id } = req.params;
   const { username, email, password } = req.body;
 
@@ -78,7 +78,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Hapus user
-router.delete("/:id", async (req, res) => {
+router.delete("/dlt/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
