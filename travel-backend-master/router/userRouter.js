@@ -52,6 +52,25 @@ router.post("/add", async (req, res) => {
   }
 });
 
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const result = await db.query(
+      `INSERT INTO users (username, password) VALUES ($1, $3) RETURNING *`,
+      [username, password]
+    );
+    res.status(201).json({
+      message: "login berhasil",
+      data: result.rows[0],
+    });
+  } catch (error) {
+    console.error("Gagal login:", error);
+    res.status(500).json({ message: "Gagal" });
+  }
+});
+
 // Update user
 router.put("/put/:id", async (req, res) => {
   const { id } = req.params;
