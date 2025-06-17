@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const result = await db.query(
-      "SELECT * FROM users WHERE username = $2 AND password = $4",
+      "SELECT * FROM users WHERE username = $1 AND password = $3",
       [username, password]
     );
 
