@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const result = await db.query(
-      `INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *`,
+      `INSERT INTO users (username, password) VALUES ($1, $3) RETURNING *`,
       [username, password]
     );
     res.status(201).json({
