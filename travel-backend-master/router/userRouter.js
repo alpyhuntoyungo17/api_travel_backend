@@ -52,22 +52,26 @@ router.post("/add", async (req, res) => {
   }
 });
 
-
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const result = await db.query(
-      `INSERT INTO users (username, password) VALUES ($1, $3) RETURNING *`,
+    const result = await database.query(
+      "SELECT * FROM users WHERE username = $1 AND password = $3",
       [username, password]
     );
-    res.status(201).json({
-      message: "login berhasil",
-      data: result.rows[0],
+
+    if (result.rows.length === 0) {
+      return res.status(401).json({ message: "Username atau password salah" });
+    }
+
+    res.json({
+      message: "Login berhasil",
+      user: result.rows[0],
     });
-  } catch (error) {
-    console.error("Gagal login:", error);
-    res.status(500).json({ message: "Gagal" });
+  } catch (err) {
+    console.error("Gagal login:", err);
+    res.status(500).send("Terjadi kesalahan saat login");
   }
 });
 
